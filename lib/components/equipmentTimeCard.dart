@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:formosa_club/data/equipmentTimeCardInherited.dart';
 
 class EquipmentTimeCard extends StatefulWidget {
   final String image;
   final String name;
 
-  const EquipmentTimeCard({super.key, required this.image, required this.name, required this.equipmentTimeCardContext});
-
-  final BuildContext equipmentTimeCardContext;
+  const EquipmentTimeCard({super.key, required this.image, required this.name});
 
   @override
   State<EquipmentTimeCard> createState() => _EquipmentTimeCardState();
@@ -51,8 +48,6 @@ class _EquipmentTimeCardState extends State<EquipmentTimeCard> {
                 } else {
                   // Handle other screens or default behavior
                 }
-
-                EquipmentTimeCardInherited.of(widget.equipmentTimeCardContext).addEquipmentTimeCard(widget.image, widget.name);
 
                 Navigator.pop(context);
               },
