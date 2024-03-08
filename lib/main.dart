@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formosa_club/components/equipmentTimeCard.dart';
-import 'package:formosa_club/data/equipmentTimeCardInherited.dart';
+import 'package:formosa_club/data/home_controller.dart';
 import 'package:formosa_club/screens/timeManagementScreen.dart';
 
 void main() {
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: EquipmentTimeCardInherited(
+      home: HomeController(
           child: const MyHomePage(title: 'Flutter Demo Home Page')),
     );
   }
