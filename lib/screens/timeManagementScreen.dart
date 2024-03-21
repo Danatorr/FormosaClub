@@ -13,7 +13,6 @@ class TimeManagementScreen extends StatefulWidget {
 class _TimeManagementScreenState extends State<TimeManagementScreen> {
   @override
   Widget build(BuildContext context) {
-    List<EquipmentTimeCard> equipmentTimeCardList = [];
 
     return Scaffold(
       appBar: AppBar(
@@ -23,33 +22,27 @@ class _TimeManagementScreenState extends State<TimeManagementScreen> {
         title: const Text("Formosa Club"),
       ),
       body: Center(
-        child: FutureBuilder(
-            future: Future.delayed(Duration.zero),
-            builder: (context,snapshot){
-              if(snapshot.hasData){
-                return ListView.builder(
-                    itemBuilder: (context, index){
-                      return equipmentTimeCardList[index].createState().build(context);
-                    }
-                );
-              }
-              return Text("null");
-            }
-        )
-      ),
+          child: ListView.builder(
+            itemCount: HomeController.of(context).equipmentTimeCardList.length,
+            itemBuilder: (context, index) => HomeController.of(context).equipmentTimeCardList[index],
+                  ),
+                ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (contextNew) => AddNewEquipmentTimeCardScreen(equipmentCardContext: context,))).then((value) => {
-
-                setState(() {
-                  EquipmentTimeCard e = value;
-                  print(e.name);
-                  equipmentTimeCardList.add(value as EquipmentTimeCard);
-                  print(equipmentTimeCardList.length);
-                }),
-
-          });
+          HomeController.of(context).equipmentTimeCardList.length;
+          Navigator.of(context)
+              .push(MaterialPageRoute(
+                  builder: (contextNew) => AddNewEquipmentTimeCardScreen(
+                        equipmentCardContext: context,
+                      )))
+              .then((value) => {
+                    setState(() {
+                      EquipmentTimeCard e = value;
+                      print(e.name);
+                      HomeController.of(context).equipmentTimeCardList.add(value);
+                      print(HomeController.of(context).equipmentTimeCardList.length);
+                    }),
+                  });
         },
         backgroundColor: const Color(0xff2980b9),
         child: const Icon(

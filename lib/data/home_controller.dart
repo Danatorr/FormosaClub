@@ -14,10 +14,7 @@ class HomeController extends InheritedNotifier<ValueNotifier<List<EquipmentTimeC
     return result!;
   }
 
-   void addEquipmentTimeCard(String image, String name){
-     notifier!.value.add(EquipmentTimeCard(image: image, name: name));
-   }
-
+   List<EquipmentTimeCard> equipmentTimeCardList = [];
 
   @override
   bool updateShouldNotify(HomeController old) {
