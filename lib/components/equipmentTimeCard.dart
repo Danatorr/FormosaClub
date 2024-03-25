@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:formosa_club/data/home_controller.dart';
-import 'package:formosa_club/screens/addNewEquipmentTimeCardScreen.dart';
+import 'package:formosa_club/screens/equipment_time_card_details_screen.dart';
+import 'package:formosa_club/screens/timeManagementScreen.dart';
+
 
 class EquipmentTimeCard extends StatefulWidget {
   final String image;
   final String name;
+  final String currentScreen;
 
-  const EquipmentTimeCard({super.key, required this.image, required this.name});
+  const EquipmentTimeCard({super.key, required this.image, required this.name, required this.currentScreen});
 
   @override
   State<EquipmentTimeCard> createState() => _EquipmentTimeCardState();
 }
 
 class _EquipmentTimeCardState extends State<EquipmentTimeCard> {
+  CountDownController countDownController = CountDownController();
+  Color ringFillColor = Colors.green;
+  int overtimeMinutes = 0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -33,20 +38,30 @@ class _EquipmentTimeCardState extends State<EquipmentTimeCard> {
               trailing: CircularCountDownTimer(
                   width: 30,
                   height: 30,
-                  duration: 10,
-                  fillColor: Colors.green,
+                  duration: 3,
+                  fillColor: ringFillColor,
                   ringColor: Colors.white,
                   isReverse: false,
                   isReverseAnimation: false,
                   isTimerTextShown: false,
-                  controller: CountDownController(),
+                  controller: countDownController,
 
                   onComplete: (){
-                    //Resetar e trocar a cor
+                    setState(() {
+                      ringFillColor = Colors.red;
+                    });
+
+                    overtimeMinutes++;
+                    print(overtimeMinutes);
+                    countDownController.restart(duration: 5);
                   },
               ),
               onTap: () {
+                if(widget.currentScreen == "listScreen"){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => EquipmentTimeCardDetailScreen(equipmentTimeCard: widget)));
+                } else {
                   Navigator.pop(context, widget);
+                }
               },
             ),
           ),

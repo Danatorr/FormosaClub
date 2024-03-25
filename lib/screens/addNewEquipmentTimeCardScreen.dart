@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:formosa_club/components/equipmentTimeCard.dart';
-import 'package:formosa_club/data/home_controller.dart';
 
 class AddNewEquipmentTimeCardScreen extends StatefulWidget {
   const AddNewEquipmentTimeCardScreen({super.key, required this.equipmentCardContext});
@@ -32,10 +31,12 @@ class _AddNewEquipmentTimeCardScreenState
           EquipmentTimeCard(
             image: 'assets/images/jetski.jpg',
             name: 'Jet-Ski',
+            currentScreen: "addScreen",
           ),
           EquipmentTimeCard(
             image: 'assets/images/kayak.png',
             name: 'Kayak',
+            currentScreen: "addScreen",
           )
         ],
       )),

@@ -38,9 +38,10 @@ class _TimeManagementScreenState extends State<TimeManagementScreen> {
               .then((value) => {
                     setState(() {
                       EquipmentTimeCard e = value;
-                      print(e.name);
-                      HomeController.of(context).equipmentTimeCardList.add(value);
-                      print(HomeController.of(context).equipmentTimeCardList.length);
+
+                      e = EquipmentTimeCard(name: e.name, image: e.image, currentScreen: "listScreen");
+
+                      HomeController.of(context).equipmentTimeCardList.add(e);
                     }),
                   });
         },
@@ -52,4 +53,12 @@ class _TimeManagementScreenState extends State<TimeManagementScreen> {
       ),
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _TimeManagementScreenState && runtimeType == other.runtimeType;
+
+  @override
+  int get hashCode => 0;
 }
