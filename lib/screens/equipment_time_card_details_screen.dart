@@ -25,23 +25,43 @@ class _EquipmentTimeCardDetailScreenState
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.all(10),
-              child: Container(
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
                 width: 100,
                 height: 100,
-                color: Colors.pinkAccent,
                 child: Image.asset(
-                  this.widget.equipmentTimeCard.image,
+                  widget.equipmentTimeCard.image,
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Text(
-                "Valor devido: R\$ ",
+                "Valor devido: R\$ ${widget.equipmentTimeCard.dueValue / 2}",
                 style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      onPressed: () =>
+                          widget.equipmentTimeCard.countDownController.pause(),
+                      child: const Icon(Icons.pause)),
+                  ElevatedButton(
+                      onPressed: () =>
+                          widget.equipmentTimeCard.countDownController.resume(),
+                      child: const Icon(Icons.play_arrow)),
+                  ElevatedButton(
+                      onPressed: () =>
+                          widget.equipmentTimeCard.countDownController.reset(),
+                      child: const Icon(Icons.stop)),
+                ],
               ),
             )
           ],

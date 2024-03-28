@@ -27,7 +27,7 @@ class _AddNewEquipmentTimeCardScreenState
       ),
       body: Center(
           child: ListView(
-        children: const [
+        children: [
           EquipmentTimeCard(
             image: 'assets/images/jetski.jpg',
             name: 'Jet-Ski',
